@@ -2,7 +2,7 @@ name: Github CI Pipeline testing the HTML file
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   validate:
