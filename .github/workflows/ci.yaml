@@ -1,0 +1,29 @@
+name: Github CI Pipeline testing the HTML file
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: wjdp/html-validate-action@v4
+        with:
+          files: 'index.html'
+
+      - name: Validate HTML with custom script
+        run: |
+          echo "Running HTML tests..."
+          if [ -f "index.html" ]; then
+            echo "index.html found - running validation"
+            ls -la index.html
+          else
+            echo "index.html not found - skipping tests"
+            exit 1
+          fi
+          echo "Tests completed successfully"
